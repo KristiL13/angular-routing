@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
   user: {id: number, name: string};
+  paramsSubscription: Subscription;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -20,8 +22,8 @@ export class UserComponent implements OnInit {
     // snapshoti kasutamise tõttu: Kui juba olen selle komponendi peal, mis
     // peaks saama laetud, siis Angular ei lae seda uuesti ja sisu ei uuene.
     // Angular üritab olla kokkuhoidlik.
-    // this.route.params on Observable, mis võimaldab jälgida asünkroonseid toiminguid.
-    this.route.params.subscribe(
+    // this.route.params on Observable (rxjs), mis võimaldab jälgida asünkroonseid toiminguid.
+    this.paramsSubscription = this.route.params.subscribe(
       // first parameter of subscribe: fired whenever the parameters change (in this use case)
       // params will be an object that will hold the parameters as I defined them as properties.
       (params: Params) => {
@@ -35,4 +37,11 @@ export class UserComponent implements OnInit {
     // route parameetrite muutumisele.
   }
 
+  // Kui Angular ei hävitaks iga kord mu subscriptionit, kui lähen selle
+  // komponendi pealt mujale ära, siis tahaksin selle ise iga kord hävitada:
+  ngOnDestroy(): void {
+    this.paramsSubscription.unsubscribe();
+  }
+  // Routeimise subscriptioneid Angular hävitab automaatselt ise igakord.
+  // Aga kui teen oma Observable-id, siis neid pean sarnaselt ise hävitama.
 }
