@@ -18,7 +18,7 @@ const appRoutes: Routes = [
   { path: 'users', // localhost:4200/users
     component: UsersComponent // when the abovementioned path is reached, which component should be loaded
   },
-  { path: 'users/:id', component: UserComponent }, // peale : tuleb parameeter, selle nimega saame pärast
+  { path: 'users/:id/:name', component: UserComponent }, // peale : tuleb parameeter, selle nimega saame pärast
   // antud parameetri väärtuse kätte. : ütleb Angularile, et see osa pathist on dünaamiline.
   { path: 'servers', component: ServersComponent }
 ];
