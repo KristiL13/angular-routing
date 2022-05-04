@@ -20,6 +20,9 @@ export class EditServerComponent implements OnInit {
   ngOnInit() {
     console.log(this.route.snapshot.queryParams);
     console.log(this.route.snapshot.fragment);
+    // reactive listening of parameters and fragment
+    this.route.queryParams.subscribe();
+    this.route.fragment.subscribe();
     this.server = this.serversService.getServer(1);
     this.serverName = this.server.name;
     this.serverStatus = this.server.status;
