@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth-guard.service';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { EditServerComponent } from './servers/edit-server/edit-server.component';
@@ -23,6 +24,9 @@ const appRoutes: Routes = [
   },
   {
     path: 'servers',
+    // Siia saan panna kõik guardid, mida tuleb jälgida. Kehtib siinsele routeile
+    // ja kõigile tema lastele.
+    canActivate: [AuthGuard],
     component: ServersComponent,
     // using nested routing
     children: [
