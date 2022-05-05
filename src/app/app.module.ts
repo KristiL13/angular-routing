@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
@@ -15,13 +14,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'users', // localhost:4200/users
-    component: UsersComponent // when the abovementioned path is reached, which component should be loaded
+  {
+    path: 'users', // localhost:4200/users
+    component: UsersComponent, // when the abovementioned path is reached, which component should be loaded
   },
   { path: 'users/:id/:name', component: UserComponent }, // peale : tuleb parameeter, selle nimega saame pärast
   // antud parameetri väärtuse kätte. : ütleb Angularile, et see osa pathist on dünaamiline.
   { path: 'servers', component: ServersComponent },
-  { path: 'servers/:id/edit', component: EditServerComponent }
+  { path: 'servers/:id/edit', component: EditServerComponent },
 ];
 
 @NgModule({
@@ -32,15 +32,15 @@ const appRoutes: Routes = [
     ServersComponent,
     UserComponent,
     EditServerComponent,
-    ServerComponent
+    ServerComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes) // nüüd on meie ülal defineeritud appRoutes registreeritud ja meie app
+    RouterModule.forRoot(appRoutes), // nüüd on meie ülal defineeritud appRoutes registreeritud ja meie app
     // tunneb seal defineeritut ja oskab kasutada seda.
   ],
   providers: [ServersService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

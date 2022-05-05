@@ -5,10 +5,10 @@ import { ServersService } from '../servers.service';
 @Component({
   selector: 'app-server',
   templateUrl: './server.component.html',
-  styleUrls: ['./server.component.css']
+  styleUrls: ['./server.component.css'],
 })
 export class ServerComponent implements OnInit {
-  server: {id: number, name: string, status: string};
+  server: { id: number; name: string; status: string };
 
   constructor(private serversService: ServersService) { }
 
