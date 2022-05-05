@@ -29,6 +29,9 @@ export class ServerComponent implements OnInit {
     // we just want to append 'edit' to the currently loaded route, thus:
     this.router.navigate(['edit'], {
       relativeTo: this.route,
+      queryParamsHandling: 'preserve',
+      // 'merge' - would merge old query params with any new we might add here
+
       // queryParams: { allowEdit: '1' },
       // fragment: 'loading',
     });
