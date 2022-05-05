@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Data, Params, Router } from '@angular/router';
 
 import { ServersService } from '../servers.service';
 
@@ -18,9 +18,14 @@ export class ServerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      // the + in front of params turns the string param to a number.
-      this.server = this.serversService.getServer(+params['id']);
+    // this.route.params.subscribe((params: Params) => {
+    //   // the + in front of params turns the string param to a number.
+    //   this.server = this.serversService.getServer(+params['id']);
+    // });
+    this.route.data.subscribe((data: Data) => {
+      // siin 'server' on sama nimi, mis app-routing module'is resolve:
+      // all key-value pairi key nimi on.
+      this.server = data['server'];
     });
   }
 
