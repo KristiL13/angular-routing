@@ -30,7 +30,8 @@ export class ServerComponent implements OnInit {
     this.router.navigate(['edit'], {
       relativeTo: this.route,
       queryParamsHandling: 'preserve',
-      // 'merge' - would merge old query params with any new we might add here
+      // 'merge' - would merge old query params with any new we might add here.
+      // If we were to add new ones and use preserve, the old would overwrite new.
 
       // queryParams: { allowEdit: '1' },
       // fragment: 'loading',
