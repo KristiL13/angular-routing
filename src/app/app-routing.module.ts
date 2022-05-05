@@ -26,7 +26,9 @@ const appRoutes: Routes = [
     path: 'servers',
     // Siia saan panna kõik guardid, mida tuleb jälgida. Kehtib siinsele routeile
     // ja kõigile tema lastele.
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
+    // Kui tahame kaitsta ainult kõiki lapsi, aga vanemat mitte.
+    canActivateChild: [AuthGuard],
     component: ServersComponent,
     // using nested routing
     children: [
