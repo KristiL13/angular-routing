@@ -8,11 +8,13 @@
     </div>
   </div>
   <div class="col-xs-12 col-sm-4">
-    <a routerLink="/servers">Reload page</a>
+    <!-- siin kuvatakse ServersComponenti children route -->
+    <router-outlet></router-outlet>
+    <!-- <a routerLink="/servers">Reload page</a>
     <br />
     <button class="btn btn-primary" (click)="onReload()">Reload page</button>
     <app-edit-server></app-edit-server>
     <hr>
-    <!-- <app-server></app-server> -->
+    <app-server></app-server> -->
   </div>
 </div>

@@ -16,13 +16,24 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   {
     path: 'users', // localhost:4200/users
-    component: UsersComponent, // when the abovementioned path is reached, which component should be loaded
+    // when the abovementioned path is reached, which component should be loaded
+    component: UsersComponent,
+    children: [
+      { path: ':id/:name', component: UserComponent },
+      // peale : tuleb parameeter, selle nimega saame pärast
+      // antud parameetri väärtuse kätte. : ütleb Angularile, et see osa pathist
+      // on dünaamiline.
+    ],
   },
-  { path: 'users/:id/:name', component: UserComponent }, // peale : tuleb parameeter, selle nimega saame pärast
-  // antud parameetri väärtuse kätte. : ütleb Angularile, et see osa pathist on dünaamiline.
-  { path: 'servers', component: ServersComponent },
-  { path: 'servers/:id', component: ServerComponent },
-  { path: 'servers/:id/edit', component: EditServerComponent },
+  {
+    path: 'servers',
+    component: ServersComponent,
+    // using nested routing
+    children: [
+      { path: ':id', component: ServerComponent },
+      { path: ':id/edit', component: EditServerComponent },
+    ],
+  },
 ];
 
 @NgModule({
@@ -38,8 +49,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes), // nüüd on meie ülal defineeritud appRoutes registreeritud ja meie app
-    // tunneb seal defineeritut ja oskab kasutada seda.
+    RouterModule.forRoot(appRoutes), // nüüd on meie ülal defineeritud appRoutes
+    // registreeritud ja meie app tunneb seal defineeritut ja oskab kasutada seda.
   ],
   providers: [ServersService],
   bootstrap: [AppComponent],
