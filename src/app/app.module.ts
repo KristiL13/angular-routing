@@ -21,6 +21,7 @@ const appRoutes: Routes = [
   { path: 'users/:id/:name', component: UserComponent }, // peale : tuleb parameeter, selle nimega saame pärast
   // antud parameetri väärtuse kätte. : ütleb Angularile, et see osa pathist on dünaamiline.
   { path: 'servers', component: ServersComponent },
+  { path: 'servers/:id', component: ServerComponent },
   { path: 'servers/:id/edit', component: EditServerComponent },
 ];
 
